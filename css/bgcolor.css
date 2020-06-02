@@ -1,0 +1,104 @@
+/* Background color-image selection */
+.background {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    background-color: rgb(245, 245, 240);
+    border: 1px solid rgb(145, 160, 160);
+    border-radius: 8px;
+    padding-bottom: 5px;
+    display: none;
+}
+
+.background>table>tbody {
+    border: none;
+}
+
+.background tr {
+    width: 430px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.bgColors {
+    padding-top: 5px;
+    padding-left: 3px;
+}
+.bgColors td {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border: 1px solid rgb(145, 160, 160);
+    border-radius: 8px;
+}
+
+.bgButtons button {
+    width: 145px;
+    height: 30px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 2px solid rgb(120, 198, 247);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bgButtons button:nth-of-type(1) {
+    background-color: lightskyblue;
+}
+
+.bgImages {
+    padding-bottom: 5px;
+    display: none;
+}
+.bgImages td {
+    width: 130px;
+    height: 70px;
+    margin-top: 10px;
+}
+.bgImages img {
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    padding: 0px;
+    border: 1px solid rgb(145, 160, 160);
+    border-radius: 8px;
+}
+
+.bgFile {
+    width: 430px;
+    height: 80px;
+    margin: 5px auto;
+    position: relative;
+    display: none;
+}
+
+input#file{
+    opacity: 0;
+    position: absolute;
+}
+
+.bgFile label {
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    line-height: 28px;
+    background-color: lightskyblue;
+    border: 1px solid rgb(145, 160, 160);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    position: absolute;
+    top: 25px;
+    left: 10px;
+}
+.bgFile span {
+    position: absolute;
+    top: 25px;
+    left: 130px;
+    width: 270px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 15px;
+    background-color: white;
+    border: 1px solid rgb(145, 160, 160);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

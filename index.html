@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
+    <script src="main.js"></script>
+    <title>Text editor 2</title>
+</head>
+
+<body>
+    <section class="topControls">
+        <!-- Edit btn -->
+        <div class="topButtons editBt">
+            <button id="editBt" disabled onclick="edit()"><img src="icons/edit.svg"></button>
+        </div>
+        <!-- Basic text styles -->
+        <div class="topButtons">
+            <button onclick="boldText()"><img src="icons/bold.svg"></button>
+            <button onclick="italicText()"><img src="icons/italic.svg"></button>
+            <button id="underline" onclick="underlineText()"><img src="icons/underline.svg"></button>
+            <button id="crossline" onclick="crosslineText()"><img src="icons/strikethrough.svg"></button>
+        </div>
+        <!-- Text align -->
+        <div class="topButtons">
+            <button onclick="alignText()"><img src="icons/align-left.svg"></button>
+            <button onclick="alignText()"><img src="icons/align-justify.svg"></button>
+            <button onclick="alignText()"><img src="icons/align-right.svg"></button>
+        </div>
+
+        <div class="topButtons">
+            <!-- Text font -->
+            <button onclick="showFontList()"><img src="icons/font.svg"><img class="sortDown"
+                    src="icons/sort-down.svg"></button>
+            <ul class="list A">
+                <li style="font-family: Arial">Arial</li>
+                <li style="font-family: Georgia">Georgia</li>
+                <li style="font-family: Impact">Impact</li>
+                <li style="font-family: Tahoma">Tahoma</li>
+                <li style="font-family: Times New Roman">Times New Roman</li>
+                <li style="font-family: Verdana">Verdana</li>
+            </ul>
+            <!-- Text size -->
+            <button onclick="showSizeList()"><img src="icons/text-height.svg"><img class="sortDown"
+                    src="icons/sort-down.svg"></button>
+            <ul class="list T">
+                <li style="font-size: 12px">12px</li>
+                <li style="font-size: 14px">14px</li>
+                <li style="font-size: 16px">16px</li>
+                <li style="font-size: 18px">18px</li>
+                <li style="font-size: 20px">20px</li>
+                <li style="font-size: 22px">22px</li>
+                <li style="font-size: 25px">25px</li>
+                <li style="font-size: 30px">30px</li>
+            </ul>
+            <!-- Text color -->
+            <button onclick="showColorPalette()"><img src="icons/palette.svg"></button>
+            <div class="palette">
+                <div class="flexLine">
+                    <h2>Choose text color</h2>
+                    <button onclick="closeForm3()"><img class="closeIcon" src="icons/close.svg"></button>
+                </div>
+                <hr>
+                <table>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <!-- Textarea background -->
+            <button onclick="showBackgroundMenu()"><img src="icons/image.svg"></button>
+            <div class="background">
+                <div class="flexLine">
+                    <h2>Choose background color or image</h2>
+                    <button onclick="closeForm3()"><img class="closeIcon" src="icons/close.svg"></button>
+                </div>
+                <hr>
+                <div class="bgButtons flexLine">
+                    <button onclick="showBackgroundColors()">Colors</button>
+                    <button onclick="showBackgroundImages()">Images</button>
+                    <button onclick="showBackgroundFile()">Files</button>
+                </div>
+                <!-- Background colors -->
+                <div class="bgColors">
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Background Images -->
+                <div class="bgImages">
+                    <table>
+                        <tr>
+                            <td><img src="images/1.jpg"></td>
+                            <td><img src="images/2.jpg"></td>
+                            <td><img src="images/3.jpg"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/4.jpg"></td>
+                            <td><img src="images/5.jpg"></td>
+                            <td><img src="images/6.jpg"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/7.jpg"></td>
+                            <td><img src="images/8.jpg"></td>
+                            <td><img src="images/9.jpg"></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Background file -->
+                <div class="bgFile">
+                    <label for="file">Browse</label>
+                    <input type="file" id="file" accept="image/*" onchange="selectBackgroundFile()">
+                    <span>Choose file...</span>
+                </div>
+            </div>
+        </div>
+        <!-- Login/logout section -->
+        <div class="topButtons">
+            <button id="showLogin" onclick="triggerLogin()"><img src="icons/lock.svg"></button>
+            <div class="loginForm">
+                <div class="flexLine">
+                    <h2>Sign In</h2>
+                    <button onclick="closeForm3()"><img class="closeIcon" src="icons/close.svg"></button>
+                </div>
+                <hr>
+                <input id="login" type="text" placeholder="Enter login...">
+                <input id="password" type="password" placeholder="Enter password...">
+                <p class="invalidInput">Invalid input</p>
+                <input type="button" value="Login" onclick="runLogin()">
+            </div>
+            <button id="showLogout" onclick="triggerLogout()"><img src="icons/lock-open.svg"></button>
+            <div class="logoutForm">
+                <input type="button" value="Cancel" onclick="closeForm1()">
+                <input type="button" value="Logout" onclick="runLogout()">
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit mode -->
+    <section class="topControls">
+        <div class="topButtons">
+            <button onclick="save()"><img src="icons/save.svg"></button>
+            <button onclick="addTable()"><img src="icons/table.svg"></button>
+            <!-- Table -->
+            <div class="table">
+                <div class="flexLine">
+                    <h2>Create table</h2>
+                    <button onclick="closeForm3()"><img class="closeIcon" src="icons/close.svg"></button>
+                </div>
+                <hr>
+                <form class="tableOptions">
+                    <label for="countTr">
+                        Count TR
+                        <input id="countTr" type="text">
+                    </label>
+
+                    <label for="countTd">
+                        Count TD
+                        <input id="countTd" type="text">
+                    </label>
+
+                    <label for="tdWidth">
+                        Width of TD
+                        <input id="tdWidth" type="text">
+                    </label>
+
+                    <label for="tdHeight">
+                        Height of TD
+                        <input id="tdHeight" type="text">
+                    </label>
+
+                    <label for="borderWidth">
+                        Width of border
+                        <input id="borderWidth" type="text">
+                    </label>
+
+                    <label for="borderStyle">
+                        Style of border
+                        <button id="borderStyle" type="button" onclick="showBorderStyle()">Choose style...</button>
+                        <div class="bStyles">
+                            <ul>
+                                <li>dotted</li>
+                                <li>dashed</li>
+                                <li>solid</li>
+                                <li>double</li>
+                                <li>groove</li>
+                                <li>ridge</li>
+                                <li>inset</li>
+                                <li>outset</li>
+                            </ul>
+                        </div>
+                    </label>
+
+                    <label for="borderColor">
+                        Color of border
+                        <button id="borderColor" type="button" onclick="showBorderColor()">Choose color...</button>
+                        <div class="bColors">
+                            <ul>
+                                <li>black</li>
+                                <li>red</li>
+                                <li>green</li>
+                                <li>blue</li>
+                                <li>yellow</li>
+                                <li>white</li>
+                                <li>gray</li>
+                                <li>pink</li>
+                            </ul>
+                        </div>
+                    </label>
+                    <p class="invalidInput">Invalid input</p>
+                    <button id="resetTable" type="button" onclick="resetTbl()">Reset</button>
+                    <button id="createTable" type="button" onclick="createTblHtml()">Create table</button>
+                </form>
+            </div>
+            <button onclick="addOList()"><img src="icons/list-ol.svg"></button>
+            <!-- Ordered list -->
+            <div class="listAdd">
+                <div class="flexLine">
+                    <h2>Create Ordered List</h2>
+                    <button onclick="closeForm3()"><img class="closeIcon" src="icons/close.svg"></button>
+                </div>
+                <hr>
+                <form class="listForm">
+                    <label for="countOl">
+                        Count li items:
+                        <input id="countOl" type="text">
+                    </label>
+                    <label for="markOl">
+                        Type mark of list:
+                        <button id="markOl" type="button" onclick="showMarkOl()">Choose OL type mark...</button>
+                        <div class="markOl">
+                            <ul>
+                                <li>1</li>
+                                <li>I</li>
+                                <li>i</li>
+                                <li>A</li>
+                                <li>a</li>
+                            </ul>
+                        </div>
+                    </label>
+                    <p class="invalidInput">Invalid value</p>
+                    <button type="button" id="resetOList" onclick="resetOrderedList()">Reset</button>
+                    <button type="button" id="createOList" onclick="createOListHtml()">Create list</button>
+                </form>
+            </div>
+            <button onclick="addUList()"><img src="icons/list-ul.svg"></button>
+            <!-- Unordered list -->
+            <div class="listAdd">
+                <div class="flexLine">
+                    <h2>Create Unordered List</h2>
+                    <button onclick="closeForm3()"><img class="closeIcon" src="icons/close.svg"></button>
+                </div>
+                <hr>
+                <form class="listForm">
+                    <label for="countUl">
+                        Count li items:
+                        <input id="countUl" type="text">
+                    </label>
+                    <label for="markUl">
+                        Type mark of list:
+                        <button id="markUl" type="button" onclick="showMarkUl()">Choose UL type mark...</button>
+                        <div class="markUl">
+                            <ul>
+                                <li>circle</li>
+                                <li>disc</li>
+                                <li>square</li>
+                            </ul>
+                        </div>
+                    </label>
+                    <p class="invalidInput">Invalid value</p>
+                    <button type="button" id="resetUList" onclick="resetUnorderedList()">Reset</button>
+                    <button type="button" id="createUList" onclick="createUListHtml()">Create list</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Text section -->
+    <section class="textField">
+        <div class="text">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, nemo.</p>
+            <p>Neque totam officiis ducimus nihil voluptatum excepturi animi debitis nulla?</p>
+            <p>Blanditiis placeat soluta et quod nobis rerum ipsa istele de doloremque?</p>
+            <p>A non laboriosam voluptas blanditiis, nisi ex dolorem odioapus aperiam!</p>
+            <p>Repudiandae, aliquam. Ut reprehenderit, architecto nesciunt excepturi quidem.</p>
+            <p>Praesentium exercitationem aliquid sint, aspernatur necessitatibus omnis minus?</p>
+            <p>Nihil, sint pariatur! Inventore, tenetur provident commodi sit in eveniet!</p>
+            <p>Dolorum rem perferendis sapiente incidunt id tempore itaque harum sed.</p>
+            <p>Voluptatibus quidem harum assumenda suscipit fugit aliquam repellendus omnis.</p>
+            <p>Quia accusamus dolore sunt placeat culpa fuga rem po obcaecati commodi!</p>
+        </div>
+        <!-- text area for edit mode -->
+        <textarea></textarea>
+    </section>
+</body>
+
+</html>
